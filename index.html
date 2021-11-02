@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+    +-------+
+    | Notes |
+    +-------+
+    https://andreaslonn.github.io/
+
+    Hello
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="description" content="A simple notes PWA. Saves the notes (either through autosave, the save button or Ctrl+S) to Local Storage.">
+	<meta name="author" content="AndreasLonn">
+	<meta name="theme-color" content="#00ca00">
+	<meta property="og:image" content="icons/icon-512.png">
+
+    <link rel="stylesheet" href="notes.css">
+	<link rel="icon" href="notes-icon.svg">
+	<link rel="manifest" href="notes.webmanifest">
+
+    <title>Notes</title>
+</head>
+
+<body>
+    <nav>
+        <h1>Notes</h1>
+        <button id="settingsbtn">⚙️</button>
+        <button id="savebtn">💾</button>
+    </nav>
+    <textarea id="notes" placeholder="Notes"></textarea>
+    <div id="panelbackground"></div>
+    <section id="settingspanel">
+        <h2>Settings</h2>
+        <form onsubmit="saveSettings(event)">
+            <label for="settings-autosave">Autosave</label>
+            <input type="checkbox" id="settings-autosave">
+            <button type="submit">Save</button>
+        </form>
+    </section>
+    <script src="notes.js"></script>
+</body>
+</html>

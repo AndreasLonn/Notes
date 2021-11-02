@@ -1,0 +1,95 @@
+body {
+    --navbar-height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: var(--navbar-height) auto;
+}
+
+nav {
+    background-color: #777;
+    display: grid;
+    grid-template-columns: auto max-content max-content;
+}
+
+nav button {
+    font-size: 20px;
+}
+
+nav button#savebtn {
+    display: none;
+}
+
+nav h1 {
+    font-size: 24px;
+    margin: 0;
+    padding: 10px;
+    line-height: calc(var(--navbar-height) - 20px);
+    color: #4f0;
+}
+
+textarea {
+    padding: 10px;
+    margin: 0;
+    border: none;
+    font-size: larger;
+    font-family: inherit;
+    resize: none;
+}
+
+div#panelbackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0004;
+    display: none;
+}
+
+section {
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+section#settingspanel {
+    display: none;
+}
+
+section#settingspanel.visible,
+div#panelbackground.visible,
+nav button#savebtn.visible {
+    display: initial;
+}
+
+section#settingspanel h2 {
+    margin-top: 0;
+}
+
+section#settingspanel form *:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+section#settingspanel form button {
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    textarea {
+        background-color: #000;
+        color: #fff;
+    }
+    section {
+        background-color: #444;
+        color: #fff;
+    }
+    div#panelbackground {
+        background-color: #fff2;
+    }
+}
