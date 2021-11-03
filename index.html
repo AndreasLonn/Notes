@@ -3,7 +3,7 @@
     +-------+
     | Notes |
     +-------+
-    https://andreaslonn.github.io/
+    https://andreaslonn.github.io/Notes
 
     Hello
 -->
@@ -25,21 +25,55 @@
 </head>
 
 <body>
-    <nav>
-        <h1>Notes</h1>
-        <button id="settingsbtn">⚙️</button>
-        <button id="savebtn">💾</button>
-    </nav>
-    <textarea id="notes" placeholder="Notes"></textarea>
-    <div id="panelbackground"></div>
-    <section id="settingspanel">
-        <h2>Settings</h2>
-        <form onsubmit="saveSettings(event)">
-            <label for="settings-autosave">Autosave</label>
-            <input type="checkbox" id="settings-autosave">
-            <button type="submit">Save</button>
-        </form>
-    </section>
+    <main>
+        <nav id="navbar">
+            <input id="notetitle" placeholder="Title"></input>
+            <button id="settingsbtn">⚙️</button>
+            <button id="savebtn">💾</button>
+            <button id="menubtn">☰</button>
+        </nav>
+        <textarea id="notecontent" placeholder="Notes"></textarea>
+        <nav id="toolbar">
+            <button id="toolbar-left">◀️</button>
+            <button id="toolbar-down">🔽</button>
+            <button id="toolbar-up">🔼</button>
+            <button id="toolbar-right">▶️</button>
+        </nav>
+    </main>
+    <div class="panel">
+        <div class="panelbackground"></div>
+        <section id="settingspanel" class="panel">
+            <h2>Settings</h2>
+            <form onsubmit="saveSettings(event)">
+                <label for="settings-autosave">Autosave</label>
+                <input type="checkbox" id="settings-autosave">
+                <button type="submit">Save</button>
+            </form>
+        </section>
+    </div>
+    <div class="panel">
+        <div class="panelbackground"></div>
+        <section id="menupanel" class="panel">
+            <h2>Menu</h2>
+            <ul>
+                <li><button>Notes 1</button></li>
+                <li><button>Notes 2</button></li>
+                <li><button>Notes 3</button></li>
+                <li><button>Notes 4</button></li>
+            </ul>
+            <button id="addnotesbtn">Add Note</button>
+        </section>
+    </div>
+    <div class="panel">
+        <div class="panelbackground yncpanel"></div>
+        <section id="yncpanel" class="panel">
+            <h2>Title</h2>
+            <p>Message</p>
+            <button data-type="yes">Yes</button>
+            <button data-type="no">No</button>
+            <button data-type="cancel">Cancel</button>
+        </section>
+    </div>
     <script src="notes.js"></script>
 </body>
 </html>

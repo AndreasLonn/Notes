@@ -1,32 +1,57 @@
 body {
-    --navbar-height: 50px;
+    --navbar-size: 50px;
+    /* For toolbar: 35px */
+    --toolbar-size: 0;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     height: 100vh;
-    display: grid;
-    grid-template-rows: var(--navbar-height) auto;
 }
 
-nav {
+main {
+    height: 100%;
+    display: grid;
+    grid-template-rows: var(--navbar-size) auto var(--toolbar-size);
+}
+
+button {
+    background-color: #777;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px;
+    transition: background-color 0.1s;
+}
+button:hover {
+    background-color: #888;
+    cursor: pointer;
+}
+
+nav#navbar {
     background-color: #777;
     display: grid;
-    grid-template-columns: auto max-content max-content;
+    grid-template-columns: auto repeat(3, max-content);
 }
 
-nav button {
+nav#navbar button {
     font-size: 20px;
+    width: var(--navbar-size);
+    border-radius: 0;
 }
 
-nav button#savebtn {
+nav#navbar button#savebtn {
     display: none;
 }
 
-nav h1 {
+nav#navbar input#notetitle {
     font-size: 24px;
     margin: 0;
     padding: 10px;
-    line-height: calc(var(--navbar-height) - 20px);
+    line-height: calc(var(--navbar-size) - 20px);
     color: #4f0;
+    background: none;
+    border: none;
+    min-width: 0;
 }
 
 textarea {
@@ -38,14 +63,27 @@ textarea {
     resize: none;
 }
 
-div#panelbackground {
+nav#toolbar {
+    background-color: #777;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: end;
+    /* Enable for toolbar */
+    display: none;
+}
+
+nav#toolbar button {
+    width: var(--toolbar-size);
+    font-size: calc(var(--toolbar-size) / 2);
+}
+
+div.panelbackground {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: #0004;
-    display: none;
 }
 
 section {
@@ -58,17 +96,15 @@ section {
     border-radius: 5px;
 }
 
-section#settingspanel {
+section.panel {
+    min-width: 300px;
+}
+
+div.panel {
     display: none;
 }
 
-section#settingspanel.visible,
-div#panelbackground.visible,
-nav button#savebtn.visible {
-    display: initial;
-}
-
-section#settingspanel h2 {
+section h2:first-child {
     margin-top: 0;
 }
 
@@ -78,18 +114,61 @@ section#settingspanel form *:not(:last-child) {
 
 section#settingspanel form button {
     display: block;
+    font-size: small;
+    padding: 5px;
+}
+
+section#menupanel ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+section#menupanel ul li button {
+    width: 100%;
+    height: 100%;
+}
+
+section#menupanel > button {
+    width: 100%;
+    height: 100%;
+}
+
+div.panel.visible,
+nav#navbar button#savebtn.visible {
+    display: initial;
+}
+
+@media (max-width: 500px) {
+    /* Uncomment for toolbar */
+    /* body {
+        --toolbar-size: 50px;
+    } */
+    section.panel {
+        box-sizing: border-box;
+        width: 90%;
+        min-width: 0;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-    textarea {
-        background-color: #000;
-        color: #fff;
+    button {
+        background-color: #333;
     }
+    button:hover {
+        background-color: #434343;
+    }
+    nav#navbar,
+    nav#toolbar {
+        background-color: #333;
+    }
+    textarea,
     section {
-        background-color: #444;
+        background-color: #121212;
         color: #fff;
     }
     div#panelbackground {
-        background-color: #fff2;
+        background-color: #00000096;
     }
 }

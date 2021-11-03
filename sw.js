@@ -1,18 +1,18 @@
-const cacheName = 'notes-v1';
+const cacheName = 'Notes-v1';
 const appShellFiles = [
-    '/notes/',
-    '/notes/index.html',
-    '/notes/notes.css',
-    '/notes/notes.js',
-    '/notes/notes-icon.svg',
-    '/notes/icons/icon-32.png',
-    '/notes/icons/icon-64.png',
-    '/notes/icons/icon-96.png',
-    '/notes/icons/icon-128.png',
-    '/notes/icons/icon-168.png',
-    '/notes/icons/icon-192.png',
-    '/notes/icons/icon-256.png',
-    '/notes/icons/icon-512.png',
+    '/Notes/',
+    '/Notes/index.html',
+    '/Notes/notes.css',
+    '/Notes/notes.js',
+    '/Notes/notes-icon.svg',
+    '/Notes/icons/icon-32.png',
+    '/Notes/icons/icon-64.png',
+    '/Notes/icons/icon-96.png',
+    '/Notes/icons/icon-128.png',
+    '/Notes/icons/icon-168.png',
+    '/Notes/icons/icon-192.png',
+    '/Notes/icons/icon-256.png',
+    '/Notes/icons/icon-512.png',
 ];
 const contentToCache = appShellFiles;
 
