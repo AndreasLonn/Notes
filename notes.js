@@ -38,7 +38,7 @@ function YNC(title, message, onyes, onno, oncancel) {
     setVisible(yncpanel, true);
 }
 
-var settings = JSON.parse(localStorage.getItem('notes-settings') || '{"autosave": true, "fontfamily": ""}');
+var settings = JSON.parse(localStorage.getItem('notes-settings') || '{"autosave": true, "fontfamily": "font-monospace"}');
 var notes = JSON.parse(localStorage.getItem('notes-notes') || '[{"title": "", "content": ""}]');
 
 Object.defineProperty(settings, 'selected', {
@@ -112,7 +112,7 @@ window.addEventListener('keydown', function(e) {
 
 settingsbtn.addEventListener('click', () => {
     settingspanel.querySelector('form input#settings-autosave').checked = settings.autosave;
-    settingspanel.querySelector('form select#settings-fontfamily').value = settings.fontfamily;
+    settingspanel.querySelector('form select#settings-fontfamily').value = settings.fontfamily || "";
     setVisible(settingspanel, true);
 });
 
