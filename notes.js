@@ -99,7 +99,7 @@ menubtn.addEventListener('click', () => {
     let newElems = [];
     notes.forEach((e, i) => {
         let newElem = document.createElement('li');
-        newElem.innerHTML = `<li><button data-i="${i}">${e.title || "No Title"}</button></li>`;
+        newElem.innerHTML = `<button data-i="${i}">${e.title || "No Title"}</button>`;
         newElems.push(newElem);
     });
     menupanel.querySelector('ul').replaceChildren(...newElems);
