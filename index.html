@@ -45,8 +45,22 @@
         <section id="settingspanel" class="panel">
             <h2>Settings</h2>
             <form onsubmit="saveSettings(event)">
-                <label for="settings-autosave">Autosave</label>
-                <input type="checkbox" id="settings-autosave">
+                <fieldset>
+                    <label>
+                        Autosave: <input type="checkbox" id="settings-autosave">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <label>
+                        Font Family:
+                        <select id="settings-fontfamily">
+                            <option value="" selected>Default</option>
+                            <option value="font-arial">Arial</option>
+                            <option value="font-comicsans">Comic Sans MS</option>
+                            <option value="font-monospace">Monospace</option>
+                        </select>
+                    </label>
+                </fieldset>
                 <button type="submit">Save</button>
             </form>
         </section>
@@ -61,7 +75,10 @@
                 <li><button>Notes 3</button></li>
                 <li><button>Notes 4</button></li>
             </ul>
-            <button id="addnotesbtn">Add Note</button>
+            <div>
+                <!-- <button id="editnotesbtn">🖋️</button> -->
+                <button id="addnotesbtn">➕</button>
+            </div>
         </section>
     </div>
     <div class="panel">

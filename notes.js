@@ -5,6 +5,15 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/Notes/sw.js');
 };
 
+class Note {
+    title;
+    content;
+    constructor(title = "", content = "") {
+        this.title = title;
+        this.content = content;
+    }
+}
+
 function setVisible(panel, visible) {
     panel.parentElement.classList.toggle('visible', visible);
 }
@@ -29,16 +38,24 @@ function YNC(title, message, onyes, onno, oncancel) {
     setVisible(yncpanel, true);
 }
 
-var settings = JSON.parse(localStorage.getItem('notes-settings') || '{"autosave": true}');
+var settings = JSON.parse(localStorage.getItem('notes-settings') || '{"autosave": true, "fontfamily": ""}');
 var notes = JSON.parse(localStorage.getItem('notes-notes') || '[{"title": "", "content": ""}]');
-var selected = Number(localStorage.getItem('notes-selected') || 0);
+
+Object.defineProperty(settings, 'selected', {
+    get: function() {
+        return Number(localStorage.getItem('notes-selected') || 0);
+    },
+    set: function(newValue) {
+        localStorage.setItem('notes-selected', newValue);
+    }
+});
 
 /**
  * Read the notes from localStorage
  */
 function loadNote() {
-    notetitle.value = notes[selected].title;
-    notecontent.value = notes[selected].content;
+    notetitle.value = notes[settings.selected].title;
+    notecontent.value = notes[settings.selected].content;
     setVisible(menupanel, false);
 }
 loadNote();
@@ -47,14 +64,14 @@ loadNote();
  * Save note title to localStorage
  */
 function saveNoteTitle() {
-    notes[selected].title = notetitle.value;
+    notes[settings.selected].title = notetitle.value;
     localStorage.setItem('notes-notes', JSON.stringify(notes));
 }
 /**
  * Save note content to localStorage
  */
 function saveNoteContent() {
-    notes[selected].content = notecontent.value;
+    notes[settings.selected].content = notecontent.value;
     localStorage.setItem('notes-notes', JSON.stringify(notes));
 }
 /**
@@ -75,6 +92,9 @@ if (settings.autosave) {
 else
     savebtn.classList.add('visible');
 
+if (settings.fontfamily)
+    document.querySelector('body').classList.add(settings.fontfamily);
+
 /**
  * Save notes to localStorage when save button is clicked
  */
@@ -92,6 +112,7 @@ window.addEventListener('keydown', function(e) {
 
 settingsbtn.addEventListener('click', () => {
     settingspanel.querySelector('form input#settings-autosave').checked = settings.autosave;
+    settingspanel.querySelector('form select#settings-fontfamily').value = settings.fontfamily;
     setVisible(settingspanel, true);
 });
 
@@ -114,14 +135,14 @@ menupanel.addEventListener('click', e => {
         if(!settings.autosave)
             YNC("Do want to save?", "Do you want to save notes before closing?", () => {
                 saveNote();
-                selected = Number(e.target.dataset.i);
+                settings.selected = Number(e.target.dataset.i);
                 loadNote();
             }, () => {
-                selected = Number(e.target.dataset.i);
+                settings.selected = Number(e.target.dataset.i);
                 loadNote();
             })
         else {
-            selected = Number(e.target.dataset.i);
+            settings.selected = Number(e.target.dataset.i);
             loadNote();
         }
     }
@@ -129,17 +150,23 @@ menupanel.addEventListener('click', e => {
         if(!settings.autosave)
             YNC("Do want to save?", "Do you want to save notes before closing?", () => {
                 saveNote();
-                selected = notes.push(new Note()) - 1;
+                settings.selected = notes.push(new Note()) - 1;
                 loadNote();
+                saveNote();
             }, () => {
-                selected = notes.push(new Note()) - 1;
+                settings.selected = notes.push(new Note()) - 1;
                 loadNote();
+                saveNote();
             });
         else {
-            selected = notes.push(new Note()) - 1;
+            settings.selected = notes.push(new Note()) - 1;
             loadNote();
+            saveNote();
         }
     }
+    // else if(e.target.id === "editnotesbtn"){
+    //     console.log("Edit");
+    // }
 });
 
 /**
@@ -153,6 +180,7 @@ function saveSettings(e) {
 
     // Set settings values to the ones specified
     settings.autosave = e.target.querySelector('input#settings-autosave').checked;
+    settings.fontfamily = e.target.querySelector('select#settings-fontfamily').value;
 
     // Save settings to localStorage
     localStorage.setItem('notes-settings', JSON.stringify(settings));
@@ -167,6 +195,8 @@ function saveSettings(e) {
         notecontent.removeEventListener('input', saveNoteContent)
         savebtn.classList.add('visible');
     }
+    document.querySelector('body').classList.remove(...document.querySelector('body').classList);
+    document.querySelector('body').classList.add(settings.fontfamily);
 }
 
 document.querySelector('#toolbar').addEventListener('click', e => {
