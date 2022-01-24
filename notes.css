@@ -52,11 +52,11 @@ nav#navbar button {
     border-radius: 0;
 }
 
-nav#navbar button#savebtn {
+nav#navbar button#save-btn {
     display: none;
 }
 
-nav#navbar input#notetitle {
+nav#navbar input#note-title {
     font-size: 24px;
     margin: 0;
     padding: 10px;
@@ -90,7 +90,7 @@ nav#toolbar button {
     font-size: calc(var(--toolbar-size) / 2);
 }
 
-div.panelbackground {
+div.panel-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -121,38 +121,62 @@ section h2:first-child {
     margin-top: 0;
 }
 
-section#settingspanel form *:not(:last-child) {
+section#settings-panel form *:not(:last-child) {
     margin-bottom: 10px;
 }
 
-section#settingspanel form button {
+section#settings-panel form button {
     display: block;
     font-size: small;
     padding: 5px;
 }
 
-section#menupanel ul {
+section#menu-panel ul {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-section#menupanel ul li button {
+section#menu-panel ul li button:first-child {
     width: 100%;
-    height: 100%;
+}
+section#menu-panel ul li button:last-child {
+    display: none;
+}
+section#menu-panel.editing ul li {
+    display: flex;
+}
+section#menu-panel.editing ul li button:first-child {
+    flex-grow: 1;
+    border-radius: 5px 0 0 5px;
+}
+section#menu-panel.editing ul li button:last-child {
+    display: initial;
+    border-radius: 0 5px 5px 0;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-section#menupanel > div {
+section#menu-panel > div {
     display: flex;
     gap: 5px;
 }
-section#menupanel > div > button {
+section#menu-panel > div > button {
     flex-grow: 1;
+}
+section#menu-panel.editing > div > button#edit-notes-btn {
+    display: none;
+}
+section#menu-panel.editing > div > button#done-edit-notes-btn {
+    display: initial;
+}
+section#menu-panel > div > button#done-edit-notes-btn {
+    display: none;
 }
 
 div.panel.visible,
-nav#navbar button#savebtn.visible {
+nav#navbar button#save-btn.visible {
     display: initial;
 }
 
@@ -184,7 +208,7 @@ nav#navbar button#savebtn.visible {
         background-color: #121212;
         color: #fff;
     }
-    div#panelbackground {
+    div#panel-background {
         background-color: #00000096;
     }
 }

@@ -27,23 +27,26 @@
 <body>
     <main>
         <nav id="navbar">
-            <input id="notetitle" placeholder="Title"></input>
-            <button id="settingsbtn">⚙️</button>
-            <button id="savebtn">💾</button>
-            <button id="menubtn">☰</button>
+            <input id="note-title" placeholder="Title"></input>
+            <button id="settings-btn" aria-label="Settings" title="Settings">⚙</button>
+            <button id="save-btn" aria-label="Save" title="Save">💾</button>
+            <button id="menu-btn" aria-label="Menu" title="Menu">☰</button>
         </nav>
-        <textarea id="notecontent" placeholder="Notes"></textarea>
+        <textarea id="note-content" placeholder="Notes"></textarea>
         <nav id="toolbar">
-            <button id="toolbar-left">◀️</button>
-            <button id="toolbar-down">🔽</button>
-            <button id="toolbar-up">🔼</button>
-            <button id="toolbar-right">▶️</button>
+            <button id="toolbar-left" aria-label="Left" title="Left">◀️</button>
+            <button id="toolbar-down" aria-label="Down" title="Down">🔽</button>
+            <button id="toolbar-up" aria-label="Up" title="Up">🔼</button>
+            <button id="toolbar-right" aria-label="Right" title="Right">▶️</button>
         </nav>
     </main>
     <div class="panel">
-        <div class="panelbackground"></div>
-        <section id="settingspanel" class="panel">
+        <div class="panel-background"></div>
+        <section id="settings-panel" class="panel">
             <h2>Settings</h2>
+            <p>
+                GitHub: <a href="https://github.com/AndreasLonn/Notes">Notes</a>
+            </p>
             <form onsubmit="saveSettings(event)">
                 <fieldset>
                     <label>
@@ -66,24 +69,22 @@
         </section>
     </div>
     <div class="panel">
-        <div class="panelbackground"></div>
-        <section id="menupanel" class="panel">
+        <div class="panel-background"></div>
+        <section id="menu-panel" class="panel">
             <h2>Menu</h2>
             <ul>
-                <li><button>Notes 1</button></li>
-                <li><button>Notes 2</button></li>
-                <li><button>Notes 3</button></li>
-                <li><button>Notes 4</button></li>
+                <li><button>Notes 1</button><button>X</button></li>
             </ul>
             <div>
-                <!-- <button id="editnotesbtn">🖋️</button> -->
-                <button id="addnotesbtn">➕</button>
+                <button id="edit-notes-btn" aria-label="Edit" title="Edit">✎</button>
+                <button id="done-edit-notes-btn" aria-label="Done" title="Done">✓</button>
+                <button id="add-notes-btn" aria-label="Add" title="Add">+</button>
             </div>
         </section>
     </div>
     <div class="panel">
-        <div class="panelbackground yncpanel"></div>
-        <section id="yncpanel" class="panel">
+        <div class="panel-background yncpanel"></div>
+        <section id="ync-panel" class="panel">
             <h2>Title</h2>
             <p>Message</p>
             <button data-type="yes">Yes</button>
