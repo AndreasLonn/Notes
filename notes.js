@@ -17,36 +17,26 @@ class Note {
     }
 }
 
-function setVisible(panel, visible) {
-    if(panel === 'all') {
-        qs('dialog').forEach(elem => setVisible(elem, false));
-        return;
-    }
-    else if(typeof panel === 'string')
-        panel = q(panel);
-    panel.parentElement.classList.toggle('visible', visible);
-}
-
 // Yes No Cancel
 function YNC(title, message, onyes, onno, oncancel) {
-    let yncPanel = q('#ync-panel');
+    let yncPanel = q('#dialog-ync');
     yncPanel.querySelector('h2').textContent = title;
     yncPanel.querySelector('p').textContent = message;
     yncPanel.parentElement.onclick = e => {
         if(e.target.dataset.type === 'yes') {
             if(onyes) onyes();
-            setVisible(yncPanel, false);
+            yncPanel.close();
         }
         else if(e.target.dataset.type === 'no') {
             if(onno) onno();
-            setVisible(yncPanel, false);
+            yncPanel.close();
         }
         else if(e.target.dataset.type === 'cancel' || e.target.classList.contains('panel-background')) {
             if(oncancel) oncancel();
-            setVisible(yncPanel, false);
+            yncPanel.close();
         }
     };
-    setVisible(yncPanel, true);
+    yncPanel.showModal();
 }
 
 var settings = JSON.parse(localStorage.getItem('notes-settings') || '{"autosave": true, "fontfamily": "font-monospace"}');
@@ -69,7 +59,7 @@ function loadNote() {
     if(notes.length === 0) notes = [{"title": "", "content": ""}];
     q('#note-title').value = notes[settings.selected].title;
     q('#note-content').value = notes[settings.selected].content;
-    setVisible('#menu-panel', false);
+    q('#dialog-menu').close();
 }
 loadNote();
 
@@ -138,7 +128,7 @@ function exportData() {
  * Import notes from JSON file that the user uploads
  */
 function importData() {
-    setVisible('#import-panel', true);
+    q('#dialog-import').showModal();
 }
 
 q('form#form-import').addEventListener('submit', async e => {
@@ -169,7 +159,7 @@ q('form#form-import').addEventListener('submit', async e => {
         else if(mode === 'overwrite')
             notes = data.notes;
         saveNotesList();
-        setVisible('all', false);
+        qs('dialog').forEach(d => d.close());
     });
 });
 
@@ -204,7 +194,7 @@ window.addEventListener('keydown', function(e) {
     }
     else if (e.key === 'Escape') {
         e.preventDefault();
-        setVisible('all', false);
+        qs('dialog').forEach(d => d.close());
     }
     else if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
         e.preventDefault();
@@ -217,9 +207,9 @@ window.addEventListener('keydown', function(e) {
 });
 
 q('#settings-btn').addEventListener('click', () => {
-    q('#settings-panel form input#settings-autosave').checked = settings.autosave;
-    q('#settings-panel form select#settings-fontfamily').value = settings.fontfamily || '';
-    setVisible('#settings-panel', true);
+    q('#dialog-settings form input#settings-autosave').checked = settings.autosave;
+    q('#dialog-settings form select#settings-fontfamily').value = settings.fontfamily || '';
+    q('#dialog-settings').showModal();
 });
 
 q('#menu-btn').addEventListener('click', () => {
@@ -230,14 +220,21 @@ q('#menu-btn').addEventListener('click', () => {
         q('button', newElem).textContent = e.title || 'No Title';
         newElems.push(newElem);
     });
-    q('#menu-panel ul').replaceChildren(...newElems);
-    setVisible('#menu-panel', true);
+    q('#dialog-menu ul').replaceChildren(...newElems);
+    q('#dialog-menu').showModal();
 });
 
-qs('div.panel div.panel-background:not(.ync-panel)').forEach(e =>
-    e.addEventListener('click', () => setVisible(e, false)));
+document.addEventListener('click', event => {
+    if(event.target.matches('dialog:not(#dialog-ync)')) {
+        const dialogRect = event.target.getBoundingClientRect();
 
-q('#menu-panel').addEventListener('click', e => {
+        if (!(event.clientY >= dialogRect.top&& event.clientY <= dialogRect.bottom &&
+            event.clientX >= dialogRect.left && event.clientX <= dialogRect.right))
+            event.target.close();
+    }
+});
+
+q('#dialog-menu').addEventListener('click', e => {
     // console.log(e.target);
 
     if(e.target.dataset.i) {
@@ -290,10 +287,10 @@ q('#menu-panel').addEventListener('click', e => {
     }
 
     else if(e.target.id === 'edit-notes-btn')
-        q('#menu-panel').classList.add('editing');
+        q('#dialog-menu').classList.add('editing');
 
     else if(e.target.id === 'done-edit-notes-btn')
-        q('#menu-panel').classList.remove('editing');
+        q('#dialog-menu').classList.remove('editing');
 
     else if(e.target.id === 'export-btn' || e.target.parentElement.id === 'export-btn')
         exportData();
@@ -310,7 +307,7 @@ function saveSettings(e) {
         e.preventDefault();
 
         // Hide settings panel
-        setVisible('#settings-panel', false);
+        q('#dialog-settings').close();
 
         // Set settings values to the ones specified
         settings.autosave = e.target.querySelector('input#settings-autosave').checked;

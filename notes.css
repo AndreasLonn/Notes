@@ -1,4 +1,5 @@
 body {
+    color-scheme: light dark;
     --navbar-size: 50px;
     /* For toolbar: 35px */
     --toolbar-size: 0;
@@ -127,87 +128,86 @@ dialog h2:first-child {
     margin: 0;
 }
 
-dialog#settings-panel form *:not(:last-child):not(legend) {
+dialog#dialog-settings form *:not(:last-child):not(legend) {
     margin-bottom: 10px;
 }
 
-dialog#settings-panel p {
+dialog#dialog-settings p {
     margin-bottom: 0;
 }
 
-dialog#settings-panel hr {
+dialog#dialog-settings hr {
     margin: 12px 0;
 }
 
-dialog#settings-panel form {
+dialog#dialog-settings form {
     display: flex;
     flex-direction: column;
 }
 
-dialog#settings-panel form button {
+dialog#dialog-settings form button {
     display: block;
     font-size: small;
     padding: 5px;
     margin-top: 5px;
 }
 
-dialog#menu-panel > div:first-child {
+dialog#dialog-menu > div:first-child {
     display: flex;
 }
-dialog#menu-panel > div:first-child > h2 {
+dialog#dialog-menu > div:first-child > h2 {
     flex-grow: 1;
 }
-dialog#menu-panel ul {
+dialog#dialog-menu ul {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-dialog#menu-panel ul li button:first-child {
+dialog#dialog-menu ul li button:first-child {
     width: 100%;
 }
-dialog#menu-panel ul li button:last-child {
+dialog#dialog-menu ul li button:last-child {
     display: none;
 }
-dialog#menu-panel.editing ul li {
+dialog#dialog-menu.editing ul li {
     display: flex;
 }
-dialog#menu-panel.editing ul li button:first-child {
+dialog#dialog-menu.editing ul li button:first-child {
     flex-grow: 1;
     border-radius: 5px 0 0 5px;
 }
-dialog#menu-panel.editing ul li button:last-child {
+dialog#dialog-menu.editing ul li button:last-child {
     display: initial;
     border-radius: 0 5px 5px 0;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-dialog#menu-panel > nav {
+dialog#dialog-menu > nav {
     display: flex;
     gap: 5px;
 }
-dialog#menu-panel > nav > button {
+dialog#dialog-menu > nav > button {
     flex-grow: 1;
 }
-dialog#menu-panel.editing > nav > button#edit-notes-btn {
+dialog#dialog-menu.editing > nav > button#edit-notes-btn {
     display: none;
 }
-dialog#menu-panel.editing > nav > button#done-edit-notes-btn {
+dialog#dialog-menu.editing > nav > button#done-edit-notes-btn {
     display: initial;
 }
-dialog#menu-panel > nav > button#done-edit-notes-btn {
+dialog#dialog-menu > nav > button#done-edit-notes-btn {
     display: none;
 }
 
-dialog#import-panel form {
+dialog#dialog-import form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-div.panel.visible,
 nav#navbar button#save-btn.visible {
     display: initial;
 }

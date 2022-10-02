@@ -40,83 +40,71 @@
             <button id="toolbar-right" aria-label="Right" title="Right">▶️</button>
         </nav>
     </main>
-    <div class="panel">
-        <div class="panel-background"></div>
-        <dialog open id="settings-panel">
-            <h2>Settings and info</h2>
-            <p>
-                GitHub: <a href="https://github.com/AndreasLonn/Notes">Notes</a>
-            </p>
-            <hr>
-            <form onsubmit="saveSettings(event)">
-                <label>
-                    Autosave: <input type="checkbox" id="settings-autosave">
-                </label>
-                <label>
-                    Font Family:
-                    <select id="settings-fontfamily">
-                        <option value="">Browser Default</option>
-                        <option value="font-arial">Arial</option>
-                        <option value="font-comicsans">Comic Sans MS</option>
-                        <option value="font-monospace" selected>Monospace</option>
-                    </select>
-                </label>
-                <button type="submit">Save</button>
-            </form>
-        </dialog>
-    </div>
-    <div class="panel">
-        <div class="panel-background"></div>
-        <dialog open id="menu-panel">
-            <div>
-                <h2>Menu</h2>
-                <nav>
-                    <button id="export-btn" aria-label="Export" title="Export (Ctrl + E)"><div style="transform: rotate(-90deg);">⇤</div></button>
-                    <button id="import-btn" aria-label="Import" title="Import (Ctrl + I)"><div style="transform: rotate(90deg);">⇤</div></button>
-                </nav>
-            </div>
-            <ul>
-                <li><button>Notes 1</button><button>X</button></li>
-            </ul>
+    <dialog id="dialog-settings">
+        <h2>Settings and info</h2>
+        <p>
+            GitHub: <a href="https://github.com/AndreasLonn/Notes">Notes</a>
+        </p>
+        <hr>
+        <form onsubmit="saveSettings(event)">
+            <label>
+                Autosave: <input type="checkbox" id="settings-autosave">
+            </label>
+            <label>
+                Font Family:
+                <select id="settings-fontfamily">
+                    <option value="">Browser Default</option>
+                    <option value="font-arial">Arial</option>
+                    <option value="font-comicsans">Comic Sans MS</option>
+                    <option value="font-monospace" selected>Monospace</option>
+                </select>
+            </label>
+            <button type="submit">Save</button>
+        </form>
+    </dialog>
+    <dialog id="dialog-menu">
+        <div>
+            <h2>Menu</h2>
             <nav>
-                <button id="edit-notes-btn" aria-label="Edit" title="Edit">✎</button>
-                <button id="done-edit-notes-btn" aria-label="Done" title="Done">✓</button>
-                <button id="add-notes-btn" aria-label="Add" title="Add">+</button>
+                <button id="export-btn" aria-label="Export" title="Export (Ctrl + E)"><div style="transform: rotate(-90deg);">⇤</div></button>
+                <button id="import-btn" aria-label="Import" title="Import (Ctrl + I)"><div style="transform: rotate(90deg);">⇤</div></button>
             </nav>
-        </dialog>
-    </div>
-    <div class="panel">
-        <div class="panel-background"></div>
-        <dialog open id="import-panel">
-            <h2>Import</h2>
-            <p>Upload data file to import</p>
-            <form id="form-import">
-                <div>
-                    <input type="checkbox" id="cb-import-settings" checked>
-                    <label for="cb-import-settings">Import settings</label>
-                </div>
-                <div>
-                    <label for="select-import-mode">Import mode:</label>
-                    <select type="checkbox" id="select-import-mode">
-                        <option value="append" selected>Append</option>
-                        <option value="overwrite">Overwrite</option>
-                    </select>
-                </div>
-                <input type="file" id="file-import">
-                <button type="submit">Import data</button>
-            </form>
-        </dialog>
-    </div>
-    <div class="panel">
-        <div class="panel-background"></div>
-        <dialog open id="ync-panel">
-            <h2>Title</h2>
-            <p>Message</p>
-            <button data-type="yes">Yes</button>
-            <button data-type="no">No</button>
-            <button data-type="cancel">Cancel</button>
-        </dialog>
-    </div>
+        </div>
+        <ul>
+            <li><button>Notes 1</button><button>X</button></li>
+        </ul>
+        <nav>
+            <button id="edit-notes-btn" aria-label="Edit" title="Edit">✎</button>
+            <button id="done-edit-notes-btn" aria-label="Done" title="Done">✓</button>
+            <button id="add-notes-btn" aria-label="Add" title="Add">+</button>
+        </nav>
+    </dialog>
+    <dialog id="dialog-import">
+        <h2>Import</h2>
+        <p>Upload data file to import</p>
+        <form id="form-import">
+            <div>
+                <input type="checkbox" id="cb-import-settings" checked>
+                <label for="cb-import-settings">Import settings</label>
+            </div>
+            <div>
+                <label for="select-import-mode">Import mode:</label>
+                <select type="checkbox" id="select-import-mode">
+                    <option value="append" selected>Append</option>
+                    <option value="overwrite">Overwrite</option>
+                </select>
+            </div>
+            <input type="file" id="file-import">
+            <button type="submit">Import data</button>
+        </form>
+    </dialog>
+    <dialog id="dialog-ync">
+        <h2>Title</h2>
+        <p>Message</p>
+        <button data-type="yes">Yes</button>
+        <button data-type="no">No</button>
+        <button data-type="cancel">Cancel</button>
+    </dialog>
     <script src="notes.js"></script>
 </body>
 </html>

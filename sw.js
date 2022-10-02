@@ -1,4 +1,4 @@
-const cacheName = 'Notes-v3';
+const cacheName = 'Notes-v4';
 const appShellFiles = [
     '/Notes/',
     '/Notes/index.html',
