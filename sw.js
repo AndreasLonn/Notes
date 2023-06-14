@@ -1,18 +1,18 @@
-const cacheName = 'Notes-v4';
+const cacheName = 'Notes-v5';
 const appShellFiles = [
-    '/Notes/',
-    '/Notes/index.html',
-    '/Notes/notes.css',
-    '/Notes/notes.js',
-    '/Notes/notes-icon.svg',
-    '/Notes/icons/icon-32.png',
-    '/Notes/icons/icon-64.png',
-    '/Notes/icons/icon-96.png',
-    '/Notes/icons/icon-128.png',
-    '/Notes/icons/icon-168.png',
-    '/Notes/icons/icon-192.png',
-    '/Notes/icons/icon-256.png',
-    '/Notes/icons/icon-512.png',
+    '/',
+    '/index.html',
+    '/notes.css',
+    '/notes.js',
+    '/notes-icon.svg',
+    '/icons/icon-32.png',
+    '/icons/icon-64.png',
+    '/icons/icon-96.png',
+    '/icons/icon-128.png',
+    '/icons/icon-168.png',
+    '/icons/icon-192.png',
+    '/icons/icon-256.png',
+    '/icons/icon-512.png',
 ];
 const contentToCache = appShellFiles;
 

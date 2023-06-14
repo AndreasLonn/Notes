@@ -2,7 +2,7 @@
     "name": "Notes",
     "short_name": "Notes",
     "description": "A simple notes PWA. Saves the notes (either through autosave, the save button or Ctrl+S) to Local Storage.",
-    "start_url": "/Notes/index.html",
+    "start_url": "/index.html",
     "display": "standalone",
     "theme_color": "#00ca00",
     "background_color": "#777",

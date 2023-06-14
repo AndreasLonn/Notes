@@ -2,7 +2,7 @@
  * PWA stuff
  */
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/Notes/sw.js');
+    navigator.serviceWorker.register('/sw.js');
 };
 
 function q(elem, parentElem=document) { return parentElem.querySelector(elem); }
